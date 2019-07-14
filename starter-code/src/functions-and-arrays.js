@@ -197,3 +197,42 @@ var matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
+
+const greatestProduct = aMatrix => {
+  let maxProduct=0;
+
+  const numRows = aMatrix.length;
+  const numCols = aMatrix[0].length;
+
+  for (let i=0; i<numRows; i++) {
+    for (let j=0; j<numCols-3;j++) {
+      let product = 1;
+      for (let n=0; n<4;n++) {
+        product *= aMatrix[i][j+n]
+      }
+      
+      if (product > maxProduct) {
+        //console.log(`start [${i},${j}]`);
+        maxProduct = product; 
+      }
+    }
+  }
+  for (let j=0; j<numCols; j++) {
+    for (let i=0; i<numRows-3;i++) {
+      let product = 1;
+      for (let n=0; n<4;n++) {
+        product *= aMatrix[i+n][j]
+      }
+      
+      if (product > maxProduct) {
+        //console.log(`start [${i},${j}]`);
+        maxProduct = product; 
+      }
+    }
+  }
+
+  return maxProduct;
+}
+
+console.log(greatestProduct(matrix));
